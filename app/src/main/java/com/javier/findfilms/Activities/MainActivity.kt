@@ -1,5 +1,6 @@
 package com.javier.findfilms.Activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -42,7 +43,11 @@ class MainActivity : AppCompatActivity() {
 
         adapter = FilmAdapter(filmsList) { position ->
             val film = filmsList[position]
-            Toast.makeText(this, film.title, Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, film.title, Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.EXTRA_FILM_ID, film.id)
+            startActivity(intent)
         }
 
         binding.recyclerViewFilms.adapter = adapter
